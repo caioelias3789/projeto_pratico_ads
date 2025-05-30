@@ -37,3 +37,4 @@ botao_usuario8.grid(row=3, column=2, padx=1, pady=1)
 
 botao_usuario9 = ctk.CTkButton(app, text="9",fg_color="#424242",hover_color="#9E9E9E", command="") 
 botao_usuario9.grid(row=3, column=3, padx=1, pady=1)
+app.mainloop()

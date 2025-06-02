@@ -6,6 +6,50 @@ app = ctk.CTk()
 app.geometry("600x250") # Definindo o tamanho da janela
 app.title("Projeto_Calculadora") # Definindo o titulo da janela
 
+# Funções
+def inserir_texto(valor):
+    entrada.insert("end", valor)
+
+def limpar():
+    entrada.delete(0, "end")
+
+def calcular():
+    try:
+        expressao = entrada.get().replace("x", "*")
+        resultado = eval(expressao)
+        entrada.delete(0, "end")
+        entrada.insert("end", str(resultado))
+    except:
+        entrada.delete(0, "end")
+        entrada.insert("end", "Infinito")
+
+def calcular_raiz():
+    try:
+        valor = float(entrada.get())
+        entrada.delete(0, "end")
+        entrada.insert("end", str(sqrt(valor)))
+    except:
+        entrada.delete(0, "end")
+        entrada.insert("end", "Infinito")
+
+def elevar_ao_quadrado():
+    try:
+        valor = float(entrada.get())
+        entrada.delete(0, "end")
+        entrada.insert("end", str(valor ** 2))
+    except:
+        entrada.delete(0, "end")
+        entrada.insert("end", "Infinito")
+
+def inverter_numero():
+    try:
+        valor = float(entrada.get())
+        entrada.delete(0, "end")
+        entrada.insert("end", str(1 / valor))
+    except:
+        entrada.delete(0, "end")
+        entrada.insert("end", "Infinito")
+
 # Display
 entrada = ctk.CTkEntry(app, width=550, height=50, font=("Arial", 20), justify="right")
 entrada.grid(row=0, column=0, columnspan=5, padx=10, pady=10)

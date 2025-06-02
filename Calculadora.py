@@ -6,6 +6,10 @@ app = ctk.CTk()
 app.geometry("600x250") # Definindo o tamanho da janela
 app.title("Projeto_Calculadora") # Definindo o titulo da janela
 
+# Display
+entrada = ctk.CTkEntry(app, width=550, height=50, font=("Arial", 20), justify="right")
+entrada.grid(row=0, column=0, columnspan=5, padx=10, pady=10)
+
 #botoes dos numeros
 botao_usuario0 = ctk.CTkButton(app, text="0",fg_color="#424242",hover_color="#9E9E9E", command="") 
 botao_usuario0.grid(row=6, column=2, padx=1, pady=1) 

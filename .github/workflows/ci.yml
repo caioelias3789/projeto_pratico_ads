@@ -34,4 +34,6 @@ jobs:
 
     - name: Executar testes
       run: pytest
- 
+ # Exemplo de trecho para .github/workflows/ci.yml
+    - name: Rodar testes com pytest
+      run: pytest tests/

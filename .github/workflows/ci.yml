@@ -35,12 +35,8 @@ jobs:
       - name: Executar testes
         run: pytest tests/
 
-  dast:
+  sast:
     runs-on: ubuntu-latest
     steps:
-      - name: Executar OWASP ZAP
-        uses: actions/checkout@v3
-      - name: Rodar ZAP
-        run: |
-          docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py \
-          -t http://localhost:8080 -r zap_report.html
+      - name: Executar Semgrep
+        run: semgrep --config=auto .

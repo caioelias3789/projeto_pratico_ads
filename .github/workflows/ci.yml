@@ -61,3 +61,21 @@ jobs:
 
       - name: Executar Semgrep
         run: semgrep --config=auto .
+  dast:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Iniciar aplicação Flask
+        run: |
+          nohup flask run --host=0.0.0.0 &
+          sleep 10
+
+      - name: Rodar OWASP ZAP
+        run: |
+          docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py \
+          -t http://localhost:5000 -r zap_report.html
+
+      - name: Salvar relatório
+        uses: actions/upload-artifact@v3
+        with:
+          name: zap-report
+          path: zap_report.html

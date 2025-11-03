@@ -61,7 +61,7 @@ jobs:
       - name: Executar Semgrep
         run: semgrep --config=auto .
 
-  dast:
+  dast-nikto:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout do código
@@ -102,15 +102,9 @@ jobs:
             sleep 1
           done
 
-      - name: Run OWASP ZAP baseline scan
-        uses: zaproxy/action-baseline@v0.6.0
-        with:
-          target: 'http://localhost:5000'
-          report_name: 'zap_report.html'
+      - name: Run Nikto scan
+        run: |
+          docker run --rm sullo/nikto -h http://localhost:5000
 
-      - name: Archive ZAP report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: zap-report
-          path: zap_report.html
+      - name: Finalizar DAST
+        run: echo "Nikto scan completo"
